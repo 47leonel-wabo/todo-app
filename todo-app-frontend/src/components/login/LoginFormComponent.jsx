@@ -14,6 +14,7 @@ class LoginFormComponent extends React.Component {
     render = () => {
         return (
             <div className="loginForm">
+                <h1 className="todoAppHead">Todo Application | Login</h1>
                 <div className="form-content">
                     <label className="username" htmlFor="username">
                         Username
