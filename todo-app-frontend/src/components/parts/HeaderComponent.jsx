@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Form, Nav, Navbar, NavDropdown} from "react-bootstrap"
+import {Form, Nav, Navbar, NavDropdown} from "react-bootstrap"
 import {Link} from "react-router-dom";
 
 class HeaderComponent extends React.Component {
@@ -8,7 +8,7 @@ class HeaderComponent extends React.Component {
             <div className="shadow-sm">
                 <div className="container">
                     <Navbar expand="lg">
-                        <Navbar.Brand href="#home">Aiwa Applications</Navbar.Brand>
+                        <Nav><Link className="navbar-brand" to="/">Aiwa Applications</Link></Nav>
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
@@ -16,7 +16,7 @@ class HeaderComponent extends React.Component {
                             </Nav>
                             <Nav className="ml-auto">
                                 <NavDropdown title="Username" id="basic-nav-dropdown">
-                                    <NavDropdown.Item>New Todo</NavDropdown.Item>
+                                    <Link to="/" className="dropdown-item">New Todo</Link>
                                     <NavDropdown.Item>Ongoing Todos</NavDropdown.Item>
                                     <NavDropdown.Item>Settings</NavDropdown.Item>
                                     <NavDropdown.Divider/>
@@ -24,7 +24,7 @@ class HeaderComponent extends React.Component {
                                 </NavDropdown>
                             </Nav>
                             <Form inline pd="sm">
-                                <Button variant="outline-info" size="sm">Login</Button>
+                                <Link to="/login" className="btn btn-outline-info btn-sm">Login</Link>
                             </Form>
                         </Navbar.Collapse>
                     </Navbar>
@@ -32,6 +32,10 @@ class HeaderComponent extends React.Component {
 
             </div>
         )
+    }
+
+    showLoginForm = () => {
+        console.log('login pressed!')
     }
 }
 
