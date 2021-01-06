@@ -27,7 +27,7 @@ class LoginFormComponent extends React.Component {
                         <input type="password" id="password" name="password" value={this.state.password}
                                onChange={this.handleChange} required/>
                     </label>
-                    <button className="btn btn-outline-primary" onClick={this.logUser}> Login</button>
+                    <Button variant="outline-primary" block onClick={this.logUser}> Login</Button>
                 </div>
             </div>
         )

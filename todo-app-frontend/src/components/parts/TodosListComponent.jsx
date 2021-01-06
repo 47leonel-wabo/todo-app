@@ -1,4 +1,5 @@
 import React from 'react'
+import {Table} from 'react-bootstrap'
 
 class TodosListComponent extends React.Component {
 
@@ -31,10 +32,10 @@ class TodosListComponent extends React.Component {
 
     render = () => {
         return (
-            <div className="todoList">
+            <div className="container">
                 <h3>List of Todos</h3>
                 <div className="todosTable">
-                    <table>
+                    <Table bordered hover responsive="lg">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -55,7 +56,7 @@ class TodosListComponent extends React.Component {
                             </tr>
                         })}
                         </tbody>
-                    </table>
+                    </Table>
                 </div>
             </div>
         )
