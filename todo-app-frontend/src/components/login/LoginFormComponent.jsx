@@ -26,20 +26,20 @@ class LoginFormComponent extends React.Component {
                         <input type="password" id="password" name="password" value={this.state.password}
                                onChange={this.handleChange} required/>
                     </label>
-                    <button className="loginBtn"> Login</button>
+                    <button className="loginBtn" onClick={this.logUser}> Login</button>
                 </div>
             </div>
         )
     }
 
     handleChange = (event) => {
-        console.log(event.target.value)
         this.setState({[event.target.name]: event.target.value})
     }
-    //
-    // handlePassword = (event) => {
-    //     this.setState({password: event.target.value})
-    // }
+
+    logUser = () => {
+        // No form verification done yet
+        this.props.history.push('/home')
+    }
 }
 
 export default LoginFormComponent
