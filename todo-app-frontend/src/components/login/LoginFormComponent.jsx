@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../styles/LoginFormComponent.css'
-import { Button } from "react-bootstrap"
+import { Button, Form } from "react-bootstrap"
+import {Link} from "react-router-dom";
 
 class LoginFormComponent extends React.Component {
 
@@ -14,21 +15,24 @@ class LoginFormComponent extends React.Component {
 
     render = () => {
         return (
-            <div className="loginForm">
-                <h1 className="todoAppHead">Todo Application | Login</h1>
-                <div className="form-content">
-                    <label className="username" htmlFor="username">
-                        Username
-                        <input type="text" id="username" name="username" value={this.state.username}
-                               onChange={this.handleChange} required/>
+            <div className="col-4 m-auto">
+                <h3 className="todoAppHead" style={{ marginTop: "32px" }}>Todo Application | Login</h3>
+                <Form className="col  form-content" style={{ marginTop: "32px" }}>
+                    <Form.Group htmlFor="username">
+                        <Form.Control type="text" name="username" value={this.state.username} onChange={this.handleChange} required/>
+                    </Form.Group>
+                    <label htmlFor="password">
+                        <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleChange} required/>
                     </label>
-                    <label className="password" htmlFor="password">
-                        Password
-                        <input type="password" id="password" name="password" value={this.state.password}
-                               onChange={this.handleChange} required/>
-                    </label>
-                    <Button variant="outline-primary" block onClick={this.logUser}> Login</Button>
-                </div>
+                    <Button variant="outline-primary" block onClick={this.logUser} style={{ marginTop: "32px" }}> Login</Button>
+                    <div style={{ marginTop: "32px" }}>
+                        Or
+                        <Form.Text>
+                            You don't have an account signup <Link to="#">Here</Link>
+                        </Form.Text>
+                    </div>
+
+                </Form>
             </div>
         )
     }

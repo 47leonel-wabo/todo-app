@@ -32,9 +32,9 @@ class TodosListComponent extends React.Component {
 
     render = () => {
         return (
-            <div className="container">
+            <div className="container" style={{ marginTop: "32px" }}>
                 <h3>List of Todos</h3>
-                <div className="todosTable">
+                <div className="todosTable" style={{ marginTop: "32px" }}>
                     <Table bordered hover responsive="lg">
                         <thead>
                         <tr>

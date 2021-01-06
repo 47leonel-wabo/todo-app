@@ -8,6 +8,7 @@ import FooterComponent from "./parts/FooterComponent"
 import WelcomeComponent from "./home/WelcomeComponent"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 class TodoApp extends React.Component {
     render = () => {
@@ -19,7 +20,7 @@ class TodoApp extends React.Component {
                         <Route path="/" exact component={WelcomeComponent}/>
                         <Route path="/login" component={LoginFormComponent}/>
                         <Route path="/home" component={HomeComponent}/>
-                        <Route component={Error404Component} />
+                        <Route component={Error404Component}/>
                     </Switch>
                     <FooterComponent/>
                 </BrowserRouter>
