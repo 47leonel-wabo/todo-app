@@ -7,7 +7,7 @@ class FooterComponent extends React.Component {
             <div className="footerComponent">
                 <Navbar fixed="bottom" expand="lg" variant="light" bg="dark">
                     <Container>
-                        <Navbar.Brand style={{color: "white"}}>Aiwa Services &copy;2021</Navbar.Brand>
+                        <Navbar.Brand className="text-muted" style={{color: "white", fontSize: "14px"}}>Aiwa Services &copy;2021</Navbar.Brand>
                     </Container>
                 </Navbar>
             </div>

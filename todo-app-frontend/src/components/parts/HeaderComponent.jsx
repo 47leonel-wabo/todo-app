@@ -3,7 +3,7 @@ import {Form, Nav, Navbar, NavDropdown} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import {
     faHome,
-    faHouseUser,
+    faHouseUser, faInfo,
     faRunning,
     faSignInAlt,
     faSignOutAlt,
@@ -31,7 +31,7 @@ class HeaderComponent extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
                                 <Link className="nav-link" to="/home">
-                                    <FontAwesomeIcon icon={faHome} style={{margin: "0 2px"}}/>Home
+                                    <FontAwesomeIcon icon={faTasks} style={{margin: "0 2px"}}/>Todos
                                 </Link>
                             </Nav>
                             <Nav className="ml-auto">
@@ -44,6 +44,11 @@ class HeaderComponent extends React.Component {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item>
                                         <FontAwesomeIcon icon={faHouseUser}/> Settings
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link className="nav-item" to="/home">
+                                            <FontAwesomeIcon icon={faInfo}/>About
+                                        </Link>
                                     </NavDropdown.Item>
                                     <NavDropdown.Divider/>
                                     <NavDropdown.Item href="#">
