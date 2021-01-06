@@ -1,5 +1,5 @@
 import React from 'react'
-import TodosListComponent from "./TodosListComponent";
+import TodosListComponent from "../parts/TodosListComponent";
 
 class HomeComponent extends React.Component{
     render = () => {
