@@ -1,0 +1,32 @@
+.loginForm {
+    width: 400px;
+    margin: auto;
+    padding: 16px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#username, #password {
+    width: 75%;
+    height: 30px;
+    margin-bottom: 16px;
+}
+
+.username, .password {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.loginBtn{
+    height: 32px;
+    background-color: #3b96f6;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    margin-top: 16px;
+    font-size: 18px;
+}

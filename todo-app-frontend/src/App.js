@@ -1,12 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import TodoApp from "./components/TodoApp"
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
 
-    </div>
-  );
+    render = () => {
+        return (
+            <div className="App">
+                <TodoApp/>
+            </div>
+        );
+    }
 }
 
 export default App;
