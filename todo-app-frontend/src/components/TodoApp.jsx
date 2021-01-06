@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginFormComponent from "./login/LoginFormComponent";
+import HomeComponent from "./home/HomeComponent";
 
 class TodoApp extends React.Component {
     render = () => {
@@ -7,6 +8,7 @@ class TodoApp extends React.Component {
             <div className="todoApp">
                 <h1 className="todoAppHead">Todo Application</h1>
                 <LoginFormComponent />
+                <HomeComponent />
             </div>
         )
     }
