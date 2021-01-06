@@ -2,10 +2,12 @@ import React from 'react'
 import LoginFormComponent from "./login/LoginFormComponent"
 import HomeComponent from "./home/HomeComponent"
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Error404Component from "./error/404Component";
-import HeaderComponent from "./parts/HeaderComponent";
-import FooterComponent from "./parts/FooterComponent";
-import WelcomeComponent from "./home/WelcomeComponent";
+import Error404Component from "./error/404Component"
+import HeaderComponent from "./parts/HeaderComponent"
+import FooterComponent from "./parts/FooterComponent"
+import WelcomeComponent from "./home/WelcomeComponent"
+
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 class TodoApp extends React.Component {
     render = () => {

@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../styles/LoginFormComponent.css'
+import { Button } from "react-bootstrap"
 
 class LoginFormComponent extends React.Component {
 
@@ -26,7 +27,7 @@ class LoginFormComponent extends React.Component {
                         <input type="password" id="password" name="password" value={this.state.password}
                                onChange={this.handleChange} required/>
                     </label>
-                    <button className="loginBtn" onClick={this.logUser}> Login</button>
+                    <button className="btn btn-outline-primary" onClick={this.logUser}> Login</button>
                 </div>
             </div>
         )
