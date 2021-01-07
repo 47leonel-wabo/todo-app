@@ -1,7 +1,8 @@
 import React from 'react'
 import '../../styles/LoginFormComponent.css'
-import { Button, Form } from "react-bootstrap"
-import {Link} from "react-router-dom";
+import {Button, Form} from "react-bootstrap"
+import {Link} from "react-router-dom"
+import AuthenticationService from "../auth/AuthenticationService"
 
 class LoginFormComponent extends React.Component {
 
@@ -9,23 +10,29 @@ class LoginFormComponent extends React.Component {
         super()
         this.state = {
             username: 'name',
-            password: 'pass'
+            password: 'pass',
+            badCredentials: false
         }
     }
 
     render = () => {
         return (
             <div className="col-4 m-auto">
-                <h3 className="todoAppHead" style={{ marginTop: "32px" }}>Todo Application | Login</h3>
-                <Form className="col  form-content" style={{ marginTop: "32px" }}>
+                <h3 className="todoAppHead" style={{marginTop: "32px"}}>Todo Application | Login</h3>
+                {this.state.badCredentials &&
+                <strong style={{color: "red"}}>Incorrect Username and/or Password</strong>}
+                <Form className="col  form-content" style={{marginTop: "32px"}}>
                     <Form.Group htmlFor="username">
-                        <Form.Control type="text" name="username" value={this.state.username} onChange={this.handleChange} required/>
+                        <Form.Control type="text" name="username" value={this.state.username}
+                                      onChange={this.handleChange} required/>
                     </Form.Group>
                     <label htmlFor="password">
-                        <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleChange} required/>
+                        <Form.Control type="password" name="password" value={this.state.password}
+                                      onChange={this.handleChange} required/>
                     </label>
-                    <Button variant="outline-primary" block onClick={this.logUser} style={{ marginTop: "32px" }}> Login</Button>
-                    <div style={{ marginTop: "32px" }}>
+                    <Button variant="outline-primary" block onClick={this.logUser}
+                            style={{marginTop: "32px"}}> Login</Button>
+                    <div style={{marginTop: "32px"}}>
                         Or
                         <Form.Text>
                             You don't have an account signup <Link to="#">Here</Link>
@@ -42,8 +49,13 @@ class LoginFormComponent extends React.Component {
     }
 
     logUser = () => {
-        // No form verification done yet
-        this.props.history.push('/home')
+        if (this.state.username && this.state.password) {
+            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
+            this.props.history.push('/home')
+        }else {
+            this.setState({badCredentials: true})
+        }
+
     }
 }
 

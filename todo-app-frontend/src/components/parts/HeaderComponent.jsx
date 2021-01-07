@@ -2,22 +2,22 @@ import React from 'react'
 import {Form, Nav, Navbar, NavDropdown} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import {
-    faHome,
-    faHouseUser, faInfo,
+    faHouseUser,
+    faInfoCircle,
     faRunning,
     faSignInAlt,
     faSignOutAlt,
-    faTasks,
-    faUserCircle
+    faTasks
 } from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import AuthenticationService from "../auth/AuthenticationService";
 
 class HeaderComponent extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            loggedUsername: 'unknown'
+            loggedUsername: sessionStorage.getItem('authenticateUsername')
         }
     }
 
@@ -35,10 +35,12 @@ class HeaderComponent extends React.Component {
                                 </Link>
                             </Nav>
                             <Nav className="ml-auto">
-                                <Link className="nav-link" to="#"><FontAwesomeIcon icon={faUserCircle}/></Link>
-                                <NavDropdown title={this.state.loggedUsername} id="basic-nav-dropdown">
-                                    <Link to="/" className="dropdown-item">
-                                        <FontAwesomeIcon icon={faTasks}/> Add Todo</Link>
+                                <NavDropdown title={this.state.loggedUsername === null ?
+                                    <span>Unknown</span> : this.state.loggedUsername}
+                                             id="basic-nav-dropdown">
+                                    <NavDropdown.Item>
+                                        <FontAwesomeIcon icon={faTasks}/> Add Todo
+                                    </NavDropdown.Item>
                                     <NavDropdown.Item>
                                         <FontAwesomeIcon icon={faRunning}/> Ongoing Todos
                                     </NavDropdown.Item>
@@ -46,19 +48,17 @@ class HeaderComponent extends React.Component {
                                         <FontAwesomeIcon icon={faHouseUser}/> Settings
                                     </NavDropdown.Item>
                                     <NavDropdown.Item>
-                                        <Link className="nav-item" to="/home">
-                                            <FontAwesomeIcon icon={faInfo}/>About
-                                        </Link>
+                                        <FontAwesomeIcon icon={faInfoCircle}/> Help
                                     </NavDropdown.Item>
                                     <NavDropdown.Divider/>
-                                    <NavDropdown.Item href="#">
+                                    <NavDropdown.Item href="#" onClick={AuthenticationService.logoutFreeData}>
                                         <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                                     </NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                             <Form inline pd="sm">
-                                <Link to="/login" className="btn btn-outline-info btn-sm"><FontAwesomeIcon
-                                    icon={faSignInAlt}/> Login</Link>
+                                <Link to="/login" className="btn btn-outline-info btn-sm">
+                                    <FontAwesomeIcon icon={faSignInAlt}/> Login</Link>
                             </Form>
                         </Navbar.Collapse>
                     </Navbar>
@@ -66,10 +66,6 @@ class HeaderComponent extends React.Component {
 
             </div>
         )
-    }
-
-    showLoginForm = () => {
-        console.log('login pressed!')
     }
 }
 

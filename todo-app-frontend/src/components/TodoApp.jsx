@@ -8,7 +8,6 @@ import FooterComponent from "./parts/FooterComponent"
 import WelcomeComponent from "./home/WelcomeComponent"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'font-awesome/css/font-awesome.min.css'
 
 class TodoApp extends React.Component {
     render = () => {
