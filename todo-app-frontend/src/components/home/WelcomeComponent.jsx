@@ -1,8 +1,9 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 
-import {faCoffee} from "@fortawesome/free-solid-svg-icons"
+import {faCoffee, faHeadphonesAlt} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {Button} from "react-bootstrap"
 
 class WelcomeComponent extends React.Component {
     render = () => {
@@ -12,8 +13,13 @@ class WelcomeComponent extends React.Component {
                 <div className="linkToHone">
                     <Link to="/home">Go Home <FontAwesomeIcon icon={faCoffee}/></Link>
                 </div>
+                <Button className="btn-sm" onClick={this.specialWelcome}><FontAwesomeIcon className="mr-2" icon={faHeadphonesAlt}/>Get Special Welcome</Button>
             </div>
         )
+    }
+
+    specialWelcome = () => {
+        console.log('Special Welcome!')
     }
 }
 

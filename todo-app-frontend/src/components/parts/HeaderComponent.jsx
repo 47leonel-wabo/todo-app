@@ -39,9 +39,7 @@ class HeaderComponent extends React.Component {
                             </Nav>}
                             {isUserLogged &&
                             <Nav className="ml-auto">
-                                <NavDropdown title={this.state.loggedUsername === null ?
-                                    <span>Unknown</span> : this.state.loggedUsername}
-                                             id="basic-nav-dropdown">
+                                <NavDropdown title={this.state.loggedUsername === null ? <span>Unknown</span> : this.state.loggedUsername} id="basic-nav-dropdown">
                                     <NavDropdown.Item>
                                         <FontAwesomeIcon icon={faTasks}/> Add Todo
                                     </NavDropdown.Item>
