@@ -8,6 +8,12 @@ class AuthenticationService {
         sessionStorage.removeItem('authenticateUsername')
         sessionStorage.removeItem('authenticatePassword')
     }
+
+    isUserLogged() {
+        let user = sessionStorage.getItem('authenticateUsername')
+        if (user === null) return false
+        return true
+    }
 }
 
 export default new AuthenticationService()

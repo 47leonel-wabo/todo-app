@@ -22,6 +22,9 @@ class HeaderComponent extends React.Component {
     }
 
     render = () => {
+
+        const isUserLogged = AuthenticationService.isUserLogged()
+
         return (
             <div className="shadow-sm">
                 <div className="container">
@@ -29,11 +32,12 @@ class HeaderComponent extends React.Component {
                         <Nav><Link className="navbar-brand" to="/">Aiwa Applications</Link></Nav>
                         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mr-auto">
+                            {isUserLogged && <Nav className="mr-auto">
                                 <Link className="nav-link" to="/home">
                                     <FontAwesomeIcon icon={faTasks} style={{margin: "0 2px"}}/>Todos
                                 </Link>
-                            </Nav>
+                            </Nav>}
+                            {isUserLogged &&
                             <Nav className="ml-auto">
                                 <NavDropdown title={this.state.loggedUsername === null ?
                                     <span>Unknown</span> : this.state.loggedUsername}
@@ -55,15 +59,14 @@ class HeaderComponent extends React.Component {
                                         <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                                     </NavDropdown.Item>
                                 </NavDropdown>
+                            </Nav>}
+                            <Nav className="ml-auto">
+                                {!isUserLogged && <Link to="/login" className="btn btn-outline-info btn-sm">
+                                    <FontAwesomeIcon icon={faSignInAlt}/> Login</Link>}
                             </Nav>
-                            <Form inline pd="sm">
-                                <Link to="/login" className="btn btn-outline-info btn-sm">
-                                    <FontAwesomeIcon icon={faSignInAlt}/> Login</Link>
-                            </Form>
                         </Navbar.Collapse>
                     </Navbar>
                 </div>
-
             </div>
         )
     }
