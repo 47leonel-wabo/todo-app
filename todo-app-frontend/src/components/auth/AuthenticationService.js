@@ -14,6 +14,10 @@ class AuthenticationService {
         if (user === null) return false
         return true
     }
+
+    getLoginUsername() {
+        return sessionStorage.getItem('authenticateUsername')
+    }
 }
 
 export default new AuthenticationService()
