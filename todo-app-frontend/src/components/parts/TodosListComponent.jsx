@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table} from 'react-bootstrap'
+import {Button, Table} from 'react-bootstrap'
 import TodosService from "../../api/todos/TodosService"
 import AuthenticationService from "../auth/AuthenticationService"
 
@@ -14,8 +14,13 @@ class TodosListComponent extends React.Component {
 
     componentDidMount() {
         const userLogged = AuthenticationService.getLoginUsername()
-        if (userLogged !== null) {
-            TodosService.fetchTodosByUsername(userLogged)
+        this.fetchTodosOfCurrentUser(userLogged)
+        // Else we can show common todos made
+    }
+
+    fetchTodosOfCurrentUser = (user) => {
+        if (user !== null) {
+            TodosService.fetchTodosByUsername(user)
                 .then(response => {
                     console.log(response.data)
                     this.setState({
@@ -23,7 +28,6 @@ class TodosListComponent extends React.Component {
                     })
                 })
         }
-        // Else we can show common todos made
     }
 
     render = () => {
@@ -38,7 +42,6 @@ class TodosListComponent extends React.Component {
                             <th>Title</th>
                             <th>Description</th>
                             <th>Due Date</th>
-                            <th>Owner</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,7 +51,13 @@ class TodosListComponent extends React.Component {
                                 <td>{todo.title}</td>
                                 <td>{todo.description}</td>
                                 <td>{todo.dueDate}</td>
-                                <td>{todo.owner}</td>
+                                <td><Button onClick={() => this.deleteTodo(todo.id)}
+                                            className="btn-sm btn-warning"> Delete </Button></td>
+                                <td>
+                                    <button onClick={() => this.editTodo(todo.id)}
+                                            className="btn-sm btn-outline-info"> Edit
+                                    </button>
+                                </td>
                             </tr>
                         })}
                         </tbody>
@@ -56,6 +65,23 @@ class TodosListComponent extends React.Component {
                 </div>
             </div>
         )
+    }
+
+    deleteTodo = (todoId) => {
+        // console.log(`Deleting...${todoId}`)
+        const username = sessionStorage.getItem('authenticateUsername')
+        TodosService.removeTodo(username, todoId)
+            .then(response => {
+                console.log(response.data)
+                this.fetchTodosOfCurrentUser(username)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    editTodo = (todoId) => {
+        console.log(`Editing...${todoId}`)
     }
 }
 
