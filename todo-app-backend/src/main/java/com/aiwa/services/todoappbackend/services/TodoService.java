@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -14,9 +15,24 @@ public class TodoService {
     private static final AtomicLong index = new AtomicLong();
 
     static {
-        todoList.add(new TodoModel(index.incrementAndGet(), "leo ka", "Learn React Js", "Time to be a full-stack Engineer", LocalDateTime.now(), false));
-        todoList.add(new TodoModel(index.incrementAndGet(), "leo ka", "Learn Vue3 and Spring Boot", "Time to be a full-stack Engineer", LocalDateTime.now(), false));
-        todoList.add(new TodoModel(index.incrementAndGet(), "leo ka", "Learn Processing (Digital Art)", "Make beautiful awesome graphic", LocalDateTime.now(), false));
+        todoList.add(new TodoModel(index.incrementAndGet(),
+                "leo ka",
+                "Learn React Js",
+                "Time to be a full-stack Engineer",
+                LocalDateTime.now(),
+                false));
+        todoList.add(new TodoModel(index.incrementAndGet(),
+                "leo ka",
+                "Learn Vue3 and Spring Boot",
+                "Time to be a full-stack Engineer",
+                LocalDateTime.now(),
+                false));
+        todoList.add(new TodoModel(index.incrementAndGet(),
+                "leo ka",
+                "Learn Processing (Digital Art)",
+                "Make beautiful awesome graphic",
+                LocalDateTime.now(),
+                false));
     }
 
     public List<TodoModel> findAll() {
@@ -24,9 +40,28 @@ public class TodoService {
     }
 
     public boolean deleteTodo(Long id) {
-        var todo = todoList.stream().filter(todoModel -> todoModel.getId().equals(id)).findFirst().orElse(null);
+        var todo = todoList
+                .stream()
+                .filter(todoModel -> todoModel.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+
         if (todo != null)
             return todoList.remove(todo);
         return false;
+    }
+
+    public TodoModel addTodo(TodoModel todoModel) {
+        todoModel.setId(index.incrementAndGet());
+        todoList.add(todoModel);
+        return todoModel;
+    }
+
+    public TodoModel findTodoById(Long todoId) {
+        return todoList
+                .stream()
+                .filter(todoModel -> todoModel.getId().equals(todoId))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Todo element with id " + todoId + " not found"));
     }
 }
