@@ -23,4 +23,12 @@ public class TodoController {
 //        System.out.println(username);
         return new ResponseEntity<>(todoService.findAll(), HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "/{username}/todos/{todoId}")
+    public ResponseEntity<?> removeTodo(@PathVariable String username, @PathVariable Long todoId) {
+
+        return todoService.deleteTodo(todoId) ?
+                new ResponseEntity<>("Todo removed", HttpStatus.OK) :
+                new ResponseEntity<>("Todo not found", HttpStatus.NOT_FOUND);
+    }
 }

@@ -23,4 +23,10 @@ public class TodoService {
         return todoList;
     }
 
+    public boolean deleteTodo(Long id) {
+        var todo = todoList.stream().filter(todoModel -> todoModel.getId().equals(id)).findFirst().orElse(null);
+        if (todo != null)
+            return todoList.remove(todo);
+        return false;
+    }
 }
