@@ -1,7 +1,7 @@
 function Error404Component() {
     return (
-        <div>
-            <h1>An Error Occurred!</h1>
+        <div className="mt-5">
+            <h1 className="alert-warning">An Error Occurred!</h1>
         </div>)
 }
 

@@ -2,6 +2,8 @@ import React from 'react'
 import {Button, Table} from 'react-bootstrap'
 import TodosService from "../../api/todos/TodosService"
 import AuthenticationService from "../auth/AuthenticationService"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons"
 
 class TodosListComponent extends React.Component {
 
@@ -15,7 +17,6 @@ class TodosListComponent extends React.Component {
     componentDidMount() {
         const userLogged = AuthenticationService.getLoginUsername()
         this.fetchTodosOfCurrentUser(userLogged)
-        // Else we can show common todos made
     }
 
     fetchTodosOfCurrentUser = (user) => {
@@ -52,10 +53,14 @@ class TodosListComponent extends React.Component {
                                 <td>{todo.description}</td>
                                 <td>{todo.dueDate}</td>
                                 <td><Button onClick={() => this.deleteTodo(todo.id)}
-                                            className="btn-sm btn-warning"> Delete </Button></td>
+                                            className="btn-sm btn-warning">
+                                    <FontAwesomeIcon icon={faTrashAlt} className="mr-1"/>
+                                    Delete </Button></td>
                                 <td>
                                     <button onClick={() => this.editTodo(todo.id)}
-                                            className="btn-sm btn-outline-info"> Edit
+                                            className="btn-sm btn-outline-info">
+                                        <FontAwesomeIcon icon={faEdit} className="mr-1"/>
+                                        Edit
                                     </button>
                                 </td>
                             </tr>
@@ -81,7 +86,8 @@ class TodosListComponent extends React.Component {
     }
 
     editTodo = (todoId) => {
-        console.log(`Editing...${todoId}`)
+        //console.log(`Editing...${todoId}`)
+        this.props.history.push(`/add/${todoId}`)
     }
 }
 

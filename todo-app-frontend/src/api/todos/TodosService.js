@@ -14,6 +14,10 @@ class TodosService {
     async removeTodo(username, todoId) {
         return axios.delete(`${BASE_URL}/${username}/todos/${todoId}`)
     }
+
+    updateTodo(){
+        return axios.patch(``, )
+    }
 }
 
 export default new TodosService()
