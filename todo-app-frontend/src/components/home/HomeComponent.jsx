@@ -1,11 +1,10 @@
 import React from 'react'
-import TodosListComponent from "../parts/TodosListComponent";
 
-class HomeComponent extends React.Component{
+class HomeComponent extends React.Component {
     render = () => {
         return (
             <div className="todoHome">
-                <TodosListComponent />
+                {/*<TodosListComponent />*/}
             </div>
         )
     }

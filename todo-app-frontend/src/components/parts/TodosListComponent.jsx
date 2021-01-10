@@ -4,6 +4,7 @@ import TodosService from "../../api/todos/TodosService"
 import AuthenticationService from "../auth/AuthenticationService"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons"
+import moment from "moment"
 
 class TodosListComponent extends React.Component {
 
@@ -51,7 +52,7 @@ class TodosListComponent extends React.Component {
                                 <td>{todo.done.toString()}</td>
                                 <td>{todo.title}</td>
                                 <td>{todo.description}</td>
-                                <td>{todo.dueDate}</td>
+                                <td>{moment(todo.dueDate).format('YYYY-MM-DD')}</td>
                                 <td><Button onClick={() => this.deleteTodo(todo.id)}
                                             className="btn-sm btn-warning">
                                     <FontAwesomeIcon icon={faTrashAlt} className="mr-1"/>
