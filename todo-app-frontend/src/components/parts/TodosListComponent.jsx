@@ -87,7 +87,7 @@ class TodosListComponent extends React.Component {
 
     editTodo = (todoId) => {
         //console.log(`Editing...${todoId}`)
-        this.props.history.push(`/add/${todoId}`)
+        this.props.history.push(`/todo/${todoId}`)
     }
 }
 
