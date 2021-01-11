@@ -1,6 +1,7 @@
 import React from "react"
 import moment from "moment"
-import {ErrorMessage, Field, Form, Formik} from "formik"
+import {ErrorMessage, Field, Form, Formik, prepareDataForValidation} from "formik"
+import TodosService from "../../api/todos/TodosService";
 
 class TodoComponent extends React.Component {
 
@@ -18,6 +19,21 @@ class TodoComponent extends React.Component {
         }
     }
 
+    componentDidMount() {
+        let username = sessionStorage.getItem('authenticateUsername')
+        TodosService.getSpecificTodoByUserAndId(username, this.state.todo.id)
+            .then((response) => {
+                console.log(response.data)
+                this.setState({
+                    // Here we spread all the api call data to our local object and format a specific property (dueDate here)
+                    todo: {
+                        ...response.data,
+                        dueDate: moment(response.data.dueDate).format('YYYY-MM-DD')
+                    }
+                })
+            })
+    }
+
     render = () => {
 
         let {id, title, description, isDone, owner, dueDate} = this.state.todo
@@ -33,9 +49,8 @@ class TodoComponent extends React.Component {
                             description,
                             dueDate
                         }}
-                        validate={
-                            this.validateForm
-                        }
+                        validate={this.validateForm}
+                        enableReinitialize={true}
                         onSubmit={this.submitTodo}>
                         {
                             (props) => (

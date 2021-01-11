@@ -15,8 +15,12 @@ class TodosService {
         return axios.delete(`${BASE_URL}/${username}/todos/${todoId}`)
     }
 
-    updateTodo(){
-        return axios.patch(``, )
+    async getSpecificTodoByUserAndId(username, todoId) {
+        return axios.get(`${BASE_URL}/${username}/todos/${todoId}`)
+    }
+
+    updateTodo() {
+        return axios.patch(``,)
     }
 }
 
