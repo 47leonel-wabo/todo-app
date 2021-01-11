@@ -40,7 +40,13 @@ public class TodoController {
     }
 
     @GetMapping(path = "/{username}/todos/{todoId}")
-    public ResponseEntity<?> fetchTodo(@PathVariable Long todoId){
+    public ResponseEntity<?> fetchTodo(@PathVariable Long todoId) {
         return new ResponseEntity<>(todoService.findTodoById(todoId), HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/{username}/todos")
+    public ResponseEntity<?> updateTodo(@RequestBody TodoModel todoModel, @PathVariable String username) {
+        System.out.println(todoModel);
+        return new ResponseEntity<>(todoService.updateTodo(todoModel), HttpStatus.OK);
     }
 }

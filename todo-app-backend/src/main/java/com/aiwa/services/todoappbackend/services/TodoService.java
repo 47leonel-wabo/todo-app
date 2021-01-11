@@ -64,4 +64,18 @@ public class TodoService {
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Todo element with id " + todoId + " not found"));
     }
+
+    public TodoModel updateTodo(TodoModel todoModel) {
+        /*
+        We first remove the old one before replacing it
+        Otherwise it will inserted as a new one
+         */
+        var resp = deleteTodo(todoModel.getId());
+        if (resp) {
+            todoList.add(todoModel);
+            return todoModel;
+        } else {
+            return addTodo(todoModel);
+        }
+    }
 }
