@@ -10,8 +10,8 @@ class TodoComponent extends React.Component {
         this.state = {
             todo: {
                 id: this.props.match.params.id,
-                title: 'Fake todo title',
-                description: 'Fake todo description',
+                title: '',
+                description: '',
                 isDone: false,
                 owner: sessionStorage.getItem('authenticateUsername'),
                 dueDate: moment(new Date()).format('YYYY-MM-DD')
