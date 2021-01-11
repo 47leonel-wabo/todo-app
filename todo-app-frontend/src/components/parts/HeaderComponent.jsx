@@ -37,9 +37,9 @@ class HeaderComponent extends React.Component {
                                     <FontAwesomeIcon icon={faTasks} style={{margin: "0 2px"}}/>Todos
                                 </Link>
                             </Nav>}
-                            {isUserLogged &&
+
                             <Nav className="ml-auto">
-                                <NavDropdown title={this.state.loggedUsername === null ? <span>Unknown</span> : this.state.loggedUsername} id="basic-nav-dropdown">
+                                {isUserLogged && <NavDropdown title={this.state.loggedUsername === null ? <span>Unknown</span> : this.state.loggedUsername} id="basic-nav-dropdown">
                                     <NavDropdown.Item>
                                         <FontAwesomeIcon icon={faTasks}/> Add Todo
                                     </NavDropdown.Item>
@@ -56,8 +56,8 @@ class HeaderComponent extends React.Component {
                                     <NavDropdown.Item href="#" onClick={AuthenticationService.logoutFreeData}>
                                         <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                                     </NavDropdown.Item>
-                                </NavDropdown>
-                            </Nav>}
+                                </NavDropdown>}
+                            </Nav>
                             <Nav className="ml-auto">
                                 {!isUserLogged && <Link to="/login" className="btn btn-outline-info btn-sm">
                                     <FontAwesomeIcon icon={faSignInAlt}/> Login</Link>}

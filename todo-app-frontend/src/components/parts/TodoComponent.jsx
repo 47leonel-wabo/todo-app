@@ -1,6 +1,6 @@
 import React from "react"
 import moment from "moment"
-import {Field, Form, Formik} from "formik"
+import {ErrorMessage, Field, Form, Formik} from "formik"
 
 class TodoComponent extends React.Component {
 
@@ -26,28 +26,33 @@ class TodoComponent extends React.Component {
             <div className="container">
                 <h1 className="h3 mt-5">Todo Application | Create</h1>
                 <span>{this.state.todo.dueDate}</span>
-                <div className="col-sm-6 m-auto">
+                <div className="col-sm-5 m-auto mt-3">
                     <Formik
                         initialValues={{
                             title,
                             description,
                             dueDate
                         }}
+                        validate={
+                            this.validateForm
+                        }
                         onSubmit={this.submitTodo}>
                         {
                             (props) => (
                                 <Form>
+                                    <ErrorMessage name="title" component="div" className="alert alert-warning"/>
+                                    <ErrorMessage name="description" component="div" className="alert alert-warning"/>
+                                    <ErrorMessage name="dueDate" component="div" className="alert alert-warning"/>
                                     <fieldset className="form-group">
-                                        <label htmlFor="">Title</label>
-                                        <Field className="form-control" type="text" name="title"/>
+                                        <Field className="form-control" type="text" name="title" placeholder="title"/>
                                     </fieldset>
                                     <fieldset className="form-group">
-                                        <label htmlFor="">Description</label>
-                                        <Field className="form-control" type="text" name="description"/>
+                                        <Field className="form-control" type="text" name="description"
+                                               placeholder="description"/>
                                     </fieldset>
                                     <fieldset className="form-group">
-                                        <label htmlFor="">Due Date</label>
-                                        <Field className="form-control" type="date" name="dueDate"/>
+                                        <Field className="form-control" type="date" name="dueDate"
+                                               placeholder="dueDate"/>
                                     </fieldset>
                                     <button type="submit" className="btn btn-outline-primary col">Save</button>
                                 </Form>
@@ -61,6 +66,23 @@ class TodoComponent extends React.Component {
 
     submitTodo = (values) => {
         console.log(values)
+    }
+
+    validateForm = (values) => {
+
+        let errors = {}
+
+        if (!values.title) {
+            errors.title = 'Title should be defined'
+        }
+        if (!values.description) {
+            errors.description = 'Please provide a description'
+        }
+
+        if (!moment(values.dueDate).isValid()) {
+            errors.dueDate = 'Provide a valid date'
+        }
+        return errors
     }
 }
 
