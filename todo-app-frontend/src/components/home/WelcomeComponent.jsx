@@ -9,7 +9,7 @@ import TodosService from "../../api/todos/TodosService";
 class WelcomeComponent extends React.Component {
     render = () => {
         return (
-            <div className="welcome">
+            <div className="mt-lg-5">
                 <h3>Welcome</h3>
                 <div className="linkToHone">
                     <Link to="/home">Go Home <FontAwesomeIcon icon={faCoffee}/></Link>

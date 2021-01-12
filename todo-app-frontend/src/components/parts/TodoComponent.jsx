@@ -99,10 +99,26 @@ class TodoComponent extends React.Component {
         // console.log('VALUE - SUBMIT...')
         // console.log(values)
         let user = sessionStorage.getItem('authenticateUsername')
-        TodosService.updateTodo(user, {...values, owner: user})
-            .then(response => {
-                this.props.history.push(`/home`)
-            })
+        if (values.id) {
+            TodosService.updateTodo(user, {...values, owner: user})
+                .then(response => {
+                    this.props.history.push(`/home`)
+                })
+        } else {
+            let tdone = !!values.done
+            let todo = {
+                ...values,
+                id: 0,
+                done: tdone,
+                owner: user
+            }
+            TodosService.createTodo(user, todo)
+                .then(response => {
+                    this.props.history.push(`/home`)
+                })
+
+            console.log(todo)
+        }
     }
 
     validateForm = (values) => {

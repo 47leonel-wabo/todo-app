@@ -40,21 +40,21 @@ class HeaderComponent extends React.Component {
                             </Nav>}
 
                             <Nav className="ml-auto">
-                                {isUserLogged && <NavDropdown title={this.state.loggedUsername === null ?
-                                    <FontAwesomeIcon icon={faUserCircle}/> : this.state.loggedUsername}
+                                {isUserLogged && <NavDropdown title={this.state.loggedUsername ? this.state.loggedUsername
+                                    : <FontAwesomeIcon icon={faUserCircle}/>}
                                                               id="basic-nav-dropdown">
                                     <NavDropdown.Item onClick={() => {
                                         this.showTodoCreateForm()
                                     }}>
                                         <FontAwesomeIcon icon={faTasks}/> Add Todo
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item>
+                                    <NavDropdown.Item className="disabled">
                                         <FontAwesomeIcon icon={faRunning}/> Ongoing Todos
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item>
+                                    <NavDropdown.Item className="disabled">
                                         <FontAwesomeIcon icon={faHouseUser}/> Settings
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item>
+                                    <NavDropdown.Item className="disabled">
                                         <FontAwesomeIcon icon={faInfoCircle}/> Help
                                     </NavDropdown.Item>
                                     <NavDropdown.Divider/>
