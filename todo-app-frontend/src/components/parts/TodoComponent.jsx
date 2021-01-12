@@ -36,7 +36,7 @@ class TodoComponent extends React.Component {
 
     render = () => {
 
-        let {id, title, description, dueDate, isDone} = this.state.todo
+        let {id, title, description, dueDate, done} = this.state.todo
         // let isDone = this.state.todo.done
 
         return (
@@ -50,7 +50,7 @@ class TodoComponent extends React.Component {
                             title,
                             description,
                             dueDate,
-                            isDone
+                            done
                         }}
                         validate={this.validateForm}
                         enableReinitialize={true}
@@ -78,7 +78,7 @@ class TodoComponent extends React.Component {
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label >
-                                            <Field type="checkbox" name="isDone" />
+                                            <Field type="checkbox" name="done" />
                                             Done
                                         </label>
                                     </fieldset>

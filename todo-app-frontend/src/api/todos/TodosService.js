@@ -22,7 +22,7 @@ class TodosService {
     async updateTodo(username, todo) {
         console.log('UPDATE TODO...')
         console.log(todo)
-        //return axios.put(`${BASE_URL}/${username}/todos`, todo)
+        return axios.put(`${BASE_URL}/${username}/todos`, todo)
     }
 
     async createTodo(username, todo){
