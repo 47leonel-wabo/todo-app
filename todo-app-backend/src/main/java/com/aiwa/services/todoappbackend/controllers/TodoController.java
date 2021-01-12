@@ -39,7 +39,7 @@ public class TodoController {
     @PostMapping(path = "/{username}/todos")
     public ResponseEntity<?> createTodo(@PathVariable String username, @RequestBody TodoModel todo) {
 
-        System.out.println(todo);
+        //System.out.println(todo);
 
         var createdTodo = todoService.addTodo(todo);
 
