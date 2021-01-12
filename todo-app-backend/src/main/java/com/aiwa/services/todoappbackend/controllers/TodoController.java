@@ -57,7 +57,7 @@ public class TodoController {
 
     @PutMapping(path = "/{username}/todos")
     public ResponseEntity<?> updateTodo(@RequestBody TodoModel todoModel, @PathVariable String username) {
-        System.out.println(todoModel);
+        //System.out.println(todoModel);
         return new ResponseEntity<>(todoService.updateTodo(todoModel), HttpStatus.OK);
     }
 }
