@@ -1,20 +1,21 @@
 package com.aiwa.services.todoappbackend.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class TodoModel {
     private Long id;
     private String owner;
     private String title;
     private String description;
-    private LocalDateTime dueDate;
+    private Date dueDate;
     private Boolean isDone;
 
     public TodoModel(Long id,
                      String owner,
                      String title,
                      String description,
-                     LocalDateTime dueDate,
+                     Date dueDate,
                      Boolean isDone) {
         this.id = id;
         this.owner = owner;
@@ -59,11 +60,11 @@ public class TodoModel {
         this.description = description;
     }
 
-    public LocalDateTime getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 

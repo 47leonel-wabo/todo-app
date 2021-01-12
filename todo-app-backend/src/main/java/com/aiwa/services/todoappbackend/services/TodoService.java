@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -19,19 +20,19 @@ public class TodoService {
                 "leo ka",
                 "Learn React Js",
                 "Time to be a full-stack Engineer",
-                LocalDateTime.now(),
+                new Date(),
                 false));
         todoList.add(new TodoModel(index.incrementAndGet(),
                 "leo ka",
                 "Learn Vue3 and Spring Boot",
                 "Time to be a full-stack Engineer",
-                LocalDateTime.now(),
+                new Date(),
                 false));
         todoList.add(new TodoModel(index.incrementAndGet(),
                 "leo ka",
                 "Learn Processing (Digital Art)",
                 "Make beautiful awesome graphic",
-                LocalDateTime.now(),
+                new Date(),
                 false));
     }
 

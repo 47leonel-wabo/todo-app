@@ -37,9 +37,11 @@ public class TodoController {
     }
 
     @PostMapping(path = "/{username}/todos")
-    public ResponseEntity<?> createTodo(@PathVariable String username, @RequestBody TodoModel todoModel) {
+    public ResponseEntity<?> createTodo(@PathVariable String username, @RequestBody TodoModel todo) {
 
-        var createdTodo = todoService.addTodo(todoModel);
+        System.out.println(todo);
+
+        var createdTodo = todoService.addTodo(todo);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()

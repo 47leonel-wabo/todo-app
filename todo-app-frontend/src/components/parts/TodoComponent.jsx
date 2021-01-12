@@ -1,6 +1,6 @@
 import React from "react"
 import moment from "moment"
-import {ErrorMessage, Field, Form, Formik, prepareDataForValidation} from "formik"
+import {ErrorMessage, Field, Form, Formik} from "formik"
 import TodosService from "../../api/todos/TodosService";
 
 class TodoComponent extends React.Component {
@@ -14,7 +14,7 @@ class TodoComponent extends React.Component {
                 description: '',
                 isDone: false,
                 owner: sessionStorage.getItem('authenticateUsername'),
-                dueDate: moment(new Date()).format('YYYY-MM-DD')
+                dueDate: ''
             }
         }
     }
@@ -36,18 +36,21 @@ class TodoComponent extends React.Component {
 
     render = () => {
 
-        let {id, title, description, isDone, owner, dueDate} = this.state.todo
+        let {id, title, description, dueDate, isDone} = this.state.todo
+        // let isDone = this.state.todo.done
 
         return (
             <div className="container">
                 <h1 className="h3 mt-5">Todo Application | Create</h1>
-                <span>{this.state.todo.dueDate}</span>
+                {/*<span>{this.state.todo.dueDate}</span>*/}
                 <div className="col-sm-5 m-auto mt-3">
                     <Formik
                         initialValues={{
+                            id,
                             title,
                             description,
-                            dueDate
+                            dueDate,
+                            isDone
                         }}
                         validate={this.validateForm}
                         enableReinitialize={true}
@@ -58,6 +61,10 @@ class TodoComponent extends React.Component {
                                     <ErrorMessage name="title" component="div" className="alert alert-warning"/>
                                     <ErrorMessage name="description" component="div" className="alert alert-warning"/>
                                     <ErrorMessage name="dueDate" component="div" className="alert alert-warning"/>
+
+                                    <fieldset className="form-group">
+                                        <Field className="form-control" type="hidden" name="id" readOnly/>
+                                    </fieldset>
                                     <fieldset className="form-group">
                                         <Field className="form-control" type="text" name="title" placeholder="title"/>
                                     </fieldset>
@@ -68,6 +75,12 @@ class TodoComponent extends React.Component {
                                     <fieldset className="form-group">
                                         <Field className="form-control" type="date" name="dueDate"
                                                placeholder="dueDate"/>
+                                    </fieldset>
+                                    <fieldset className="form-group">
+                                        <label >
+                                            <Field type="checkbox" name="isDone" />
+                                            Done
+                                        </label>
                                     </fieldset>
                                     <button type="submit" className="btn btn-outline-primary col">Save</button>
                                 </Form>
@@ -80,7 +93,13 @@ class TodoComponent extends React.Component {
     }
 
     submitTodo = (values) => {
-        console.log(values)
+        // console.log('VALUE - SUBMIT...')
+        // console.log(values)
+        let user = sessionStorage.getItem('authenticateUsername')
+        TodosService.updateTodo(user, {...values, owner: user})
+            .then(response => {
+                this.props.history.push(`/home`)
+            })
     }
 
     validateForm = (values) => {
