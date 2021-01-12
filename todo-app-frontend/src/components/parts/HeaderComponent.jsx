@@ -1,13 +1,14 @@
 import React from 'react'
 import {Nav, Navbar, NavDropdown} from "react-bootstrap"
-import {Link} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import {
     faHouseUser,
     faInfoCircle,
     faRunning,
     faSignInAlt,
     faSignOutAlt,
-    faTasks
+    faTasks,
+    faUserCircle
 } from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import AuthenticationService from "../auth/AuthenticationService";
@@ -39,8 +40,12 @@ class HeaderComponent extends React.Component {
                             </Nav>}
 
                             <Nav className="ml-auto">
-                                {isUserLogged && <NavDropdown title={this.state.loggedUsername === null ? <span>Unknown</span> : this.state.loggedUsername} id="basic-nav-dropdown">
-                                    <NavDropdown.Item>
+                                {isUserLogged && <NavDropdown title={this.state.loggedUsername === null ?
+                                    <FontAwesomeIcon icon={faUserCircle}/> : this.state.loggedUsername}
+                                                              id="basic-nav-dropdown">
+                                    <NavDropdown.Item onClick={() => {
+                                        this.showTodoCreateForm()
+                                    }}>
                                         <FontAwesomeIcon icon={faTasks}/> Add Todo
                                     </NavDropdown.Item>
                                     <NavDropdown.Item>
@@ -53,7 +58,11 @@ class HeaderComponent extends React.Component {
                                         <FontAwesomeIcon icon={faInfoCircle}/> Help
                                     </NavDropdown.Item>
                                     <NavDropdown.Divider/>
-                                    <NavDropdown.Item href="#" onClick={AuthenticationService.logoutFreeData}>
+                                    <NavDropdown.Item href="#" onClick={() => {
+                                        AuthenticationService.logoutFreeData()
+                                        this.props.history.push('/')
+                                        this.updateNavbarState()
+                                    }}>
                                         <FontAwesomeIcon icon={faSignOutAlt}/> Logout
                                     </NavDropdown.Item>
                                 </NavDropdown>}
@@ -68,6 +77,16 @@ class HeaderComponent extends React.Component {
             </div>
         )
     }
+
+    updateNavbarState = () => {
+        this.setState({
+            loggedUsername: sessionStorage.getItem('authenticateUsername')
+        })
+    }
+
+    showTodoCreateForm = () => {
+        this.props.history.push('/todo')
+    }
 }
 
-export default HeaderComponent
+export default withRouter(HeaderComponent)

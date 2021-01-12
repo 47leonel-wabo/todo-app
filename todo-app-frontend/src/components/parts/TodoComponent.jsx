@@ -21,17 +21,20 @@ class TodoComponent extends React.Component {
 
     componentDidMount() {
         let username = sessionStorage.getItem('authenticateUsername')
-        TodosService.getSpecificTodoByUserAndId(username, this.state.todo.id)
-            .then((response) => {
-                console.log(response.data)
-                this.setState({
-                    // Here we spread all the api call data to our local object and format a specific property (dueDate here)
-                    todo: {
-                        ...response.data,
-                        dueDate: moment(response.data.dueDate).format('YYYY-MM-DD')
-                    }
+        let id = this.state.todo.id
+        if (id) {
+            TodosService.getSpecificTodoByUserAndId(username, id)
+                .then((response) => {
+                    console.log(response.data)
+                    this.setState({
+                        // Here we spread all the api call data to our local object and format a specific property (dueDate here)
+                        todo: {
+                            ...response.data,
+                            dueDate: moment(response.data.dueDate).format('YYYY-MM-DD')
+                        }
+                    })
                 })
-            })
+        }
     }
 
     render = () => {
@@ -77,8 +80,8 @@ class TodoComponent extends React.Component {
                                                placeholder="dueDate"/>
                                     </fieldset>
                                     <fieldset className="form-group">
-                                        <label >
-                                            <Field type="checkbox" name="done" />
+                                        <label>
+                                            <Field type="checkbox" name="done"/>
                                             Done
                                         </label>
                                     </fieldset>

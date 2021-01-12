@@ -21,7 +21,7 @@ class TodoApp extends React.Component {
                         <Route path="/" exact component={WelcomeComponent}/>
                         <Route path="/login" component={LoginFormComponent}/>
                         <AuthenticatedRoute path="/home" component={TodosListComponent}/>
-                        <AuthenticatedRoute path="/todo/:id" component={TodoComponent}/>
+                        <AuthenticatedRoute path="/todo/:id?" component={TodoComponent}/>
                         <Route component={Error404Component}/>
                     </Switch>
                     <FooterComponent/>
