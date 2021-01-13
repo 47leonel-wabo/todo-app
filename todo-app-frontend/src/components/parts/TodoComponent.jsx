@@ -76,8 +76,7 @@ class TodoComponent extends React.Component {
                                                placeholder="description"/>
                                     </fieldset>
                                     <fieldset className="form-group">
-                                        <Field className="form-control" type="date" name="dueDate"
-                                               placeholder="dueDate"/>
+                                        <Field className="form-control" type="date" name="dueDate"/>
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>
